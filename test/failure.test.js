@@ -64,6 +64,9 @@ test('upload failures leave no DB rows or files; crash orphan is quarantined', a
     db.exec('DROP TRIGGER fail_knowledge');
     db.prepare('UPDATE sessions SET expires_at=0').run();
     assert.equal((await fetch(server.base + '/api/materials', { headers: { Cookie: cookie } })).status, 401);
+    db.exec('DROP TABLE sessions');
+    assert.equal((await fetch(server.base + '/api/materials', { headers: { Cookie: cookie } })).status, 503);
+    assert.equal((await fetch(server.base + '/health')).status, 200);
     db.close();
 
     await stopServer(server.child);
