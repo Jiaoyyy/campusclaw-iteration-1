@@ -22,7 +22,7 @@
 - [ ] 5.4 完成实际同伴互验；verify：同伴按 README 启动并尝试跨班链接，记录真实结论，未执行不能勾选。
 
 ## 6. 归档与提交
-- [ ] 6.1 最终 strict 校验；verify：无 error，警告均审阅。
+- [x] 6.1 最终 strict 校验；verify：无 error，警告均审阅。
 - [ ] 6.2 验收通过后同步 delta 并归档；verify：change 进入带日期 archive 目录，主规约已生成，活动列表不再含本 change。
 - [ ] 6.3 标记可复现版本；verify：建议 tag v0.1.0-auth-upload，从该版本启动成功。
 - [ ] 6.4 向作业回收系统提交个人仓库地址；verify：由实际提交结果确认，当前尚无入口和账号信息。
