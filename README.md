@@ -12,7 +12,7 @@
 
 大模型问答、向量检索、智能体、MCP、作业批改、PDF 解析、注册找回密码、SSO、多实例、公网域名及 HTTPS。
 
-## 运行约定（待实现与验证）
+## 运行约定
 
 采用 Node.js 24 内置 HTTP 服务与 SQLite，单实例部署；Docker Compose 暴露本地 8080 端口。数据库和上传文件持久化。
 
@@ -24,7 +24,7 @@
 
 执行 `npm start`，打开 `http://localhost:8080/`。初始账号是 `teacher-a`、`student-a`、`teacher-b`、`student-b`；分别对应 A/B 班教师和学生。密码取自首次启动时设置的 `.env`。测试登录、上传、退出及班级隔离可执行 `npm test`，它要求服务正在运行，且 `.env` 与首次启动时一致。
 
-本机临时演示运行在 `http://127.0.0.1:18080/`；已经在本机的 `.env` 里生成随机测试口令。不要把 `.env`、`data/` 或 `uploads/` 提交到远程仓库。
+不要把 `.env`、`data/` 或 `uploads/` 提交到远程仓库。
 
 ## 用 Docker Compose 启动
 
@@ -34,4 +34,4 @@
 
 未登录访问 API 返回 401；学生上传返回 403；跨班详情与下载返回 404，响应不得含他班资料。`GET /health` 无需登录且只检查进程是否响应，不检查数据库。数据库故障在业务 API 中返回 503。上传仅支持非空 UTF-8 `.txt`/`.md`，最多 2 MiB。标题搜索与后续课程的知识库全文检索不同。
 
-已运行的 API 测试见 `test/flow.test.js`，本机和 Docker 版本均通过。OpenSpec strict 校验通过。浏览器完整手工验收、同伴互验、归档与提交仍需补齐。
+已运行的 API 测试见 `test/flow.test.js` 和 `test/failure.test.js`，本机和 Docker 版本均通过。OpenSpec strict 校验通过。浏览器已手工检查中文文件上传、搜索、详情、主题和视图切换；真实同伴互验、归档与课程平台提交仍需补齐。
